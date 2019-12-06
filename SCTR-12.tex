@@ -1,0 +1,454 @@
+\documentclass[SE,lsstdraft,STR,toc]{lsstdoc}
+\usepackage{geometry}
+\usepackage{longtable,booktabs}
+\usepackage{enumitem}
+\usepackage{arydshln}
+
+\input meta.tex
+
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+\def\milestoneName{Ccw Functional Re-Verification}
+\def\milestoneId{LVV-P64}
+\def\product{SIT-COM Integration}
+
+\setDocCompact{true}
+
+\title{ LVV-P64 Ccw Functional Re-Verification Test Plan and Report}
+\setDocRef{\lsstDocType-\lsstDocNum}
+\date{\vcsdate}
+\setDocUpstreamLocation{\url{https://github.com/lsst/lsst-texmf/examples}}
+\author{ Austin Roberts }
+
+\input history_and_info.tex
+
+
+\setDocAbstract{
+This is the test plan and report for LVV-P64 (Ccw Functional Re-Verification),
+an LSST milestone pertaining to the System Engineering Subsystem.
+}
+
+
+\maketitle
+
+\section{Introduction}
+\label{sect:intro}
+
+
+\subsection{Objectives}
+\label{sect:objectives}
+
+The objective of this test plan is to re-verify the functional
+requirements of the Camera Cable Wrap's hardware and software, after
+shipment from the vendors facility to the Summit, as defined in \citeds{LTS-218}.
+This test campaign will only exercise the functionality that was
+executed previously and meets the following criteria:
+
+\begin{itemize}
+\tightlist
+\item
+  Only requires the CCW to be operable
+\item
+  Only requires the vendors EUI software and hardware via local control
+\item
+  Only requires a laser tracker
+\item
+  Does \textbf{NOT} require the Camera Rotator to be loaded with the
+  camera simulated mass or actual camera hardware
+\end{itemize}
+
+The hardware functional requirements were previously verified during the
+test campaign by the vendor at the vendors facility and accepted by LSST
+during the Factory Acceptance Test
+review.\\[2\baselineskip]\textbf{NOTE:~} This re-verification is the
+responsibility of the vendor. This Test Plan and Report is to capture
+this event and it's results utilizing the LSST Verification
+Architecture, but may not have detailed test steps defined in the Test
+Cases of this test campaign.
+
+
+
+\subsection{System Overview}
+\label{sect:systemoverview}
+
+The primary function of the Camera Cable Wrap is to rotate in a
+synchronous fashion with the Camera Rotator to prevent the utilities
+from getting damaged.
+
+
+\subsection{Document Overview}
+\label{sect:docoverview}
+
+This document was generated from Jira, obtaining the relevant information from the 
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testPlan/LVV-P64}{LVV-P64}
+~Jira Test Plan and related Test Cycles (
+  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCycle/LVV-C112}{LVV-C112}
+).
+
+Section \ref{sect:intro} provides an overview of the test campaign, the system under test (\product{}), the applicable documentation, and explains how this document is organized.
+Section \ref{sect:configuration}  describes the configuration used for this test.
+Section \ref{sect:personnel} describes the necessary roles and lists the individuals assigned to them.
+%Section \ref{sect:plannedtestactivities} provides the list of planned test cycles and test cases, including all relevant information that fully describes the test campaign.
+
+Section \ref{sect:overview} provides a summary of the test results, including an overview in Table \ref{table:summary}, an overall assessment statement and suggestions for possible improvements.
+Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
+
+The current status of test plan LVV-P64 in Jira is \textbf{ Draft }.
+
+\subsection{References}
+\label{sect:references}
+\renewcommand{\refname}{}
+\bibliography{lsst,refs,books,refs_ads,local}
+\section{Test Configuration}
+\label{sect:configuration}
+
+\subsection{Data Collection}
+
+  Observing is not required for this test campaign.
+
+\subsection{Verification Environment}
+\label{sect:hwconf}
+  The Camera Cable Wrap will be verified in a climate controlled
+environment on the 3rd floor of the Summit Facility integrated with the
+Camera Rotator on the Camera Cart.
+
+
+  \subsection{Entry Criteria}
+  In order to test the Camera Cable Wrap functionality, the following
+criteria must be met first:
+
+\begin{itemize}
+\tightlist
+\item
+  All utilities and electrical connections are hooked up and allow the
+  Camera Cable Wrap to be powered on and controlled
+\item
+  The EFD must be set up to be able to store events and telemetry data
+\end{itemize}
+
+
+  \subsection{Exit Criteria}
+  In order for this event to be considered complete, the following
+criteria must be met:
+
+\begin{itemize}
+\tightlist
+\item
+  Raw test data, events, and telemetry have been saved for the Camera
+  Cable Wrap.
+\item
+  All test data has been analyzed and post processed.
+\item
+  The vendor has produced and provided LSST with a Test Report detailing
+  all findings.
+\item
+  The vendor's Test Report has been attached to this Test Plan.
+\item
+  A summary of the results of the test campaign has been captured in the
+  Overall Assessment and Recommended Improvements fields of this Test
+  Plan
+\item
+  A link to the verification artifacts used to produce the summary of
+  results has been populated in the Verification Artifacts field of this
+  Test Plan
+\item
+  Any failures have been captured in the
+  \href{https://jira.lsstcorp.org/projects/FRACAS/issues/}{FRACAS}
+  project
+\end{itemize}
+
+
+
+\newpage
+\section{Personnel}
+\label{sect:personnel}
+
+The personnel involved in the test campaign is shown in the following table.
+
+\begin{longtable}{p{3cm}p{3cm}p{3cm}p{6cm}}
+\hline
+\multicolumn{2}{r}{Test Plan (LVV-P64) owner:} &
+\multicolumn{2}{l}{\textbf{ Austin Roberts } }\\\hline
+\multicolumn{2}{r}{ LVV-C112 owner:} &
+\multicolumn{2}{l}{\textbf{
+    Undefined
+}
+} \\\hline
+\textbf{Test Case} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1590}{LVV-T1590}
+& {\small Kevin Siruno } & {\small  } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small The Summit facility's 3rd floor requires the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Safety Shoes
+\item
+  Eye Protection
+\item
+  Hard Hat
+\item
+  Safety Vest
+\end{itemize}
+ }
+\medskip
+\end{minipage}
+\\ \hline
+\end{longtable}
+
+\newpage
+
+\section{Test Campaign Overview}
+\label{sect:overview}
+
+\subsection{Summary}
+\label{sect:summarytable}
+
+\begin{longtable}{p{2cm}p{2.5cm}p{9cm}p{2.5cm}}
+\toprule
+\multicolumn{3}{l}{ Test Plan {\bf LVV-P64: CCW Functional Re-verification
+ }} & Draft \\\hline
+
+  \multicolumn{3}{l}{ Test Cycle {\bf LVV-C112: CCW Functional Re-verificaiton
+ }} & Not Executed \\\hline
+
+  {\bf \footnotesize test case} & {\bf \footnotesize status} & {\bf \footnotesize comment} & {\bf \footnotesize issues} \\\toprule
+
+    \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1590}{LVV-T1590}
+    & Not Executed &
+    \begin{minipage}[]{9cm}
+    \smallskip
+    
+    \medskip
+    \end{minipage}
+    &
+    \\\hline
+\caption{Test Results Summary}
+\label{table:summary}
+\end{longtable}
+
+\subsection{Overall Assessment}
+\label{sect:overallassessment}
+
+Not yet available.
+
+\subsection{Recommended Improvements}
+\label{sect:recommendations}
+
+Not yet available.
+
+\newpage
+\section{Detailed Test Results}
+\label{sect:detailedtestresults}
+
+\subsection{Test Cycle LVV-C112 }
+
+Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/LVV-C112}{CCW Functional Re-verificaiton
+}} in Jira.
+
+CCW Functional Re-verificaiton
+\\
+Status: Not Executed
+
+This purpose of this test cycle is to run initial tests on the summit to
+re-verify the CCW as previously tested at the vendor's facility.
+
+
+\subsubsection{Software Version/Baseline}
+Not provided.
+
+\subsubsection{Configuration}
+Not provided.
+
+\subsubsection{Test Cases in LVV-C112 Test Cycle}
+
+\paragraph{Test Case LVV-T1590 - CCW Functional Re-verification
+ }\mbox{}\\
+
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1590}{\textit{ LVV-T1590 } }
+test case in Jira.
+
+The purpose of this test case is to re-verify the functional
+requirements of the CCW that the vendor had initially tested at their
+facility, as defined by \citeds{LTS-218}. This test campaign will only exercise
+the functionality that was previously executed and meets the following
+criteria:
+
+\begin{itemize}
+\tightlist
+\item
+  Only requires the CCW Utility (electric, network \& software) to be
+  hooked up
+\item
+  Only requires a HHD to control the EUI
+\item
+  Does \textbf{NOT} require to be connected to the actual camera
+  hardware
+\end{itemize}
+
+\textbf{{This will be a placeholder for any documentation that shows
+which requirements have been verified. We will attach any documents from
+any testing done previously and the procedure that the vendor followed
+to obtain the results of the previous tests.}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{{Ask Andrew Heyer if he has procedural documents regarding:}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{{how to do the visual checking of the CCW to verify that it
+    made it to the summit undamaged}}
+  \item
+    \textbf{{a detailed plan of the series of tests for the CCW via the
+    EUI}}
+  \item
+    {\textbf{Detailed plan of the reduced tests}}
+  \end{itemize}
+\end{itemize}
+
+
+\textbf{ Preconditions}:\\
+\textbf{{-Look for Summit Tasks that relate to assembly/preparation}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{{CCW Aux Control Cabinet Prep}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{{drilling hole in cabinet}}
+  \item
+    \textbf{{connecting Camera Cable Wrap Auxiliary Control Computer to
+    monitor}}
+  \item
+    {\textbf{wiring changes to new computer (add a breaker, swap for
+    larger transformer, modify ethernet wiring)}}
+  \item
+    \textbf{{install CCW Aux Control Computer}}
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\textbf{{CCW Aux Control Cabinet Check}}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{{check to see that no short circuits are occurring}}
+  \item
+    \textbf{{Check to see if cables are connected properly and signals
+    are OK}}
+  \end{itemize}
+\end{itemize}
+
+
+Execution status: {\bf Not Executed }
+
+Final comment:\\
+
+
+Detailed steps results:
+
+\begin{longtable}{p{1cm}p{15cm}}
+\hline
+{Step} & Step Details\\ \hline
+1 & Description \\
+ & \begin{minipage}[t]{15cm}
+{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage}
+\\ \cdashline{2-2}
+
+
+ & Expected Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Actual Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Status: \textbf{ Not Executed } \\ \hline
+
+2 & Description \\
+ & \begin{minipage}[t]{15cm}
+{\footnotesize
+\smallskip
+In move mode, command 25deg movement to the CCW and no movement to the
+camera rotator.
+
+\medskip }
+\end{minipage}
+\\ \cdashline{2-2}
+
+
+ & Expected Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Actual Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Status: \textbf{ Not Executed } \\ \hline
+
+3 & Description \\
+ & \begin{minipage}[t]{15cm}
+{\footnotesize
+\smallskip
+Use the analysis for the measured average motor current from the 8-hour
+test data and calculate the average heat during slewing.~
+
+\medskip }
+\end{minipage}
+\\ \cdashline{2-2}
+
+
+ & Expected Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+The heat is calculated to be no more than 50W of heat.
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Actual Result \\
+ & \begin{minipage}[t]{15cm}{\footnotesize
+\smallskip
+
+\medskip }
+\end{minipage} \\ \cdashline{2-2}
+
+ & Status: \textbf{ Not Executed } \\ \hline
+
+\end{longtable}
+
+
+\input{appendix.tex}
+\end{document}
