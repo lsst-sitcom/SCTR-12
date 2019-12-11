@@ -15,7 +15,13 @@ ifneq "$(GITSTATUS)" ""
 endif
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex
-	latexmk -bibtex -xelatex -f $(DOCNAME)
+	xelatex $(DOCNAME)
+	bibtex $(DOCNAME)
+	xelatex $(DOCNAME)
+	bibtex $(DOCNAME)
+	xelatex $(DOCNAME)
+	xelatex $(DOCNAME)
+
 
 .FORCE:
 
@@ -32,7 +38,7 @@ meta.tex: Makefile .FORCE
 #Traditional acronyms are better in this document
 acronyms.tex : ${TEX} myacronyms.txt skipacronyms.txt
 	echo ${TEXMFHOME}
-	python3 ${TEXMFHOME}/../bin/generateAcronyms.py -t "DM"    $(TEX)
+	python3 ${TEXMFHOME}/../bin/generateAcronyms.py -t "SE"    $(TEX)
 
 myacronyms.txt :
 	touch myacronyms.txt
