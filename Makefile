@@ -13,6 +13,15 @@ GITSTATUS := $(shell git status --porcelain)
 ifneq "$(GITSTATUS)" ""
 	GITDIRTY = -dirty
 endif
+# extra information
+ISDRAFT := $(shell cat $DOCTYPE-$DOCNUMBER.tex |grep lsstdraft)
+ifeq ($(ISDRAFT),"")
+	# I am building a tag version of the document
+	GITREF = $(shell git tag | grep ^v | sort -r)
+else
+	# I am building a branch or master version of the document
+	GITREF = $(shell git branch | grep ^* | awk '{print $$2}' )
+endif
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex
 	xelatex -jobname=$(JOBNAME) $(DOCNAME)
@@ -32,6 +41,7 @@ meta.tex: Makefile .FORCE
 	/bin/echo '\newcommand{\lsstDocNum}{$(DOCNUMBER)}' >>$@
 	/bin/echo '\newcommand{\vcsrevision}{$(GITVERSION)$(GITDIRTY)}' >>$@
 	/bin/echo '\newcommand{\vcsdate}{$(GITDATE)}' >>$@
+	/bin/echo '\newcommand{\gitref}{$(GITREF)}' >>$@
 
 
 #Traditional acronyms are better in this document
