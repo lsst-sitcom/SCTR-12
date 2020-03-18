@@ -20,7 +20,7 @@ ifeq ($(ISDRAFT),"")
 	GITREF = $(shell git tag | grep ^v | sort -r)
 else
 	# I am building a branch or master version of the document
-	GITREF = $(shell git branch | grep ^* | awk '{print $$2}' )
+	GITREF = $(shell git rev-parse --abbrev-ref HEAD )
 endif
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex
@@ -42,7 +42,6 @@ meta.tex: Makefile .FORCE
 	/bin/echo '\newcommand{\vcsrevision}{$(GITVERSION)$(GITDIRTY)}' >>$@
 	/bin/echo '\newcommand{\vcsdate}{$(GITDATE)}' >>$@
 	/bin/echo '\newcommand{\gitref}{$(GITREF)}' >>$@
-	/bin/echo $(shell git branch | grep ^* )
 
 
 #Traditional acronyms are better in this document
