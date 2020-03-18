@@ -14,7 +14,7 @@ ifneq "$(GITSTATUS)" ""
 	GITDIRTY = -dirty
 endif
 # extra information
-ISDRAFT := $(shell cat $DOCTYPE-$DOCNUMBER.tex |grep lsstdraft)
+ISDRAFT := $(shell cat $(DOCTYPE)-$(DOCNUMBER).tex |grep 'lsstdraft')
 ifeq ($(ISDRAFT),"")
 	# I am building a tag version of the document
 	GITREF = $(shell git tag | grep ^v | sort -r)
@@ -42,6 +42,7 @@ meta.tex: Makefile .FORCE
 	/bin/echo '\newcommand{\vcsrevision}{$(GITVERSION)$(GITDIRTY)}' >>$@
 	/bin/echo '\newcommand{\vcsdate}{$(GITDATE)}' >>$@
 	/bin/echo '\newcommand{\gitref}{$(GITREF)}' >>$@
+	/bin/echo $(shell git branch | grep ^* )
 
 
 #Traditional acronyms are better in this document
