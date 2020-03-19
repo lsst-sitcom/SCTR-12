@@ -17,10 +17,16 @@ endif
 ISDRAFT := $(shell cat $(DOCTYPE)-$(DOCNUMBER).tex |grep 'lsstdraft')
 ifeq ($(ISDRAFT),"")
 	# I am building a tag version of the document
-	GITREF = $(shell git tag | grep ^v | sort -r)
+	REF = $(shell git tag | grep ^v | sort -r)
 else
 	# I am building a branch or master version of the document
-	GITREF = $(shell git rev-parse --abbrev-ref HEAD )
+	REF = $(shell git rev-parse --abbrev-ref HEAD )
+endif
+# Travis is detaching to the HEAD of the branch,
+ifeq ("$(REF)","HEAD")
+	GITREF = $(shell git branch --contains HEAD | grep -v ^* | sed "s/ //g" )
+else
+	GITREF = $(REF)
 endif
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex
