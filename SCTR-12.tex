@@ -4,6 +4,9 @@
 \usepackage{enumitem}
 \usepackage{arydshln}
 \usepackage{attachfile}
+\usepackage{array}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
 \input meta.tex
 
@@ -21,7 +24,7 @@
 
 \setDocCompact{true}
 
-\title{LVV-P64 - CCW Functional Re-verification Test Plan and Report}
+\title{LVV-P64: CCW Functional Re-verification Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
 \date{\vcsdate}
 \author{ Austin Roberts }
@@ -101,7 +104,7 @@ Section \ref{sect:overview} provides a summary of the test results, including an
 an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P64}{LVV-P64} in Jira is \textbf{ Approved }.
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P64}{LVV-P64} in Jira is \textbf{ Completed }.
 
 \subsection{References}
 \label{sect:references}
@@ -178,9 +181,9 @@ The documentation related to this test campaign should be provided in the follow
 
 \begin{longtable}{rp{10cm}l}
 \multicolumn{3}{c}{Jira Attachments} \\ \hline
-To LVV-C112 results & \href{\attachmentsUrl/CCWTestingPlan-Results.docx?raw=true}{CCWTestingPlan-Results.docx} &
-\attachfile{attachments/CCWTestingPlan-Results.docx}\\ \hline
-\end{longtable}
+ To LVV-C112 results &
+  CCWTestingPlan-Results.docx & \attachfile{attachments/CCWTestingPlan-Results.docx}\\ \hline
+   \end{longtable}
 
 All documents provided as attachments in Jira are downloaded to Github and linked here for convenience.
 However, since they are not properly versioned, they should be considered informal and therefore
@@ -251,7 +254,7 @@ LSST Personnel
 \begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
 \toprule
 \multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P64}{LVV-P64}:} &
-\multicolumn{2}{p{10.9cm}}{\textbf{ CCW Functional Re-verification }} & Approved \\\hline
+\multicolumn{2}{p{10.9cm}}{\textbf{ CCW Functional Re-verification }} & Completed \\\hline
 \multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C112}{LVV-C112}:} &
 \multicolumn{2}{p{10.9cm}}{\textbf{ CCW Functional Re-verificaiton }} & Done \\\hline
 \textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
