@@ -13,14 +13,28 @@ GITSTATUS := $(shell git status --porcelain)
 ifneq "$(GITSTATUS)" ""
 	GITDIRTY = -dirty
 endif
+# extra information
+ISDRAFT := $(shell cat $(DOCTYPE)-$(DOCNUMBER).tex |grep 'lsstdraft')
+ifeq ($(ISDRAFT),"")
+	# I am building a tag version of the document
+	REF = $(shell git tag | grep ^v | sort -r)
+else
+	# I am building a branch or master version of the document
+	REF = $(shell git rev-parse --abbrev-ref HEAD )
+endif
+# Travis is detaching to the HEAD of the branch,
+ifeq ("$(REF)","HEAD")
+	GITREF = $(shell git branch --contains HEAD | grep -v ^* | sed "s/ //g" )
+else
+	GITREF = $(REF)
+endif
 
 $(JOBNAME).pdf: $(DOCNAME).tex meta.tex acronyms.tex
-	xelatex $(DOCNAME)
+	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 	bibtex $(DOCNAME)
-	xelatex $(DOCNAME)
-	bibtex $(DOCNAME)
-	xelatex $(DOCNAME)
-	xelatex $(DOCNAME)
+	xelatex -jobname=$(JOBNAME) $(DOCNAME)
+	xelatex -jobname=$(JOBNAME) $(DOCNAME)
+	xelatex -jobname=$(JOBNAME) $(DOCNAME)
 
 
 .FORCE:
@@ -33,12 +47,13 @@ meta.tex: Makefile .FORCE
 	/bin/echo '\newcommand{\lsstDocNum}{$(DOCNUMBER)}' >>$@
 	/bin/echo '\newcommand{\vcsrevision}{$(GITVERSION)$(GITDIRTY)}' >>$@
 	/bin/echo '\newcommand{\vcsdate}{$(GITDATE)}' >>$@
+	/bin/echo '\newcommand{\gitref}{$(GITREF)}' >>$@
 
 
 #Traditional acronyms are better in this document
 acronyms.tex : ${TEX} myacronyms.txt skipacronyms.txt
 	echo ${TEXMFHOME}
-	python3 ${TEXMFHOME}/../bin/generateAcronyms.py -t "SE"    $(TEX)
+	python3 ${TEXMFHOME}/../bin/generateAcronyms.py -t "SE" -m tex   $(TEX)
 
 myacronyms.txt :
 	touch myacronyms.txt
@@ -47,5 +62,4 @@ skipacronyms.txt :
 	touch skipacronyms.txt
 
 clean :
-	latexmk -c
 	rm *.pdf *.nav *.bbl *.xdv *.snm
